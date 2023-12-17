@@ -1,0 +1,67 @@
+menu "TOOLBOX SETUP"
+    config TOOLBOX_ENABLED
+        bool "Enable Toolbox functions"
+
+    if TOOLBOX_ENABLED
+        config ENABLE_I2C
+            bool "Enable I2C Bus communication"
+            if ENABLE_I2C
+                config I2C_PORT_NUM
+                    int "I2C Master Port"
+                    default 0
+                config I2C_GPIO_SCL
+                    int "GPIO pin For I2C SCL"
+                    default 36
+                config I2C_GPIO_SDA
+                    int "GPIO pin For I2C SDA"
+                    default 35
+                config I2C_GPIO_SCL_PULLUP
+                    bool "Enable SCL Pullup resistor"
+                    default false
+                config I2C_GPIO_SDA_PULLUP
+                    bool "Enable SDA Pullup resistor"
+                    default false
+                config I2C_MASTER_FREQUENCY
+                    int "I2C Clock frequency (Hz)"
+                    default 400000
+                    range 100000 5000000
+                    help
+                        I2C clock speed in Hz.
+                config I2C_BUS_TIMEOUT
+                    int "Read/Write Timeout (ms)"
+                    default 200
+                    range 10 1000
+                    help
+                        I2C Timeout for read and write operations.
+            endif
+        config ENABLE_SPI
+            bool "Enable SPI Communication bus"
+            if ENABLE_SPI
+                config SPI_HOST
+                    int "SPI Host number"
+                    default 2
+                config SPI_GPIO_MISO
+                    int "GPIO Num for MISO"
+                    default 13
+                config SPI_GPIO_MOSI
+                    int "GPIO Num for MOSI"
+                    default 11
+                config SPI_GPIO_CLK
+                    int "GPIO Num CLK"
+                    default 12
+                config SPI_MODE
+                    int "Select SPI Mode from 0 to 3"
+                    default 0
+                    range 0 3
+                config SPI_CLOCK_FREQ
+                    int "SPI Bus Clock Frequency in KHz"
+                    default 1000
+                config SPI_MAX_TRANSFER_SZ
+                    int "SPI Bus Max Transfer size"
+                    default 32
+                    range 0 4095
+                    help
+                        0 for DMA mode, if i'm not mistaken.
+            endif
+    endif
+endmenu
