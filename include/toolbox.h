@@ -85,11 +85,14 @@ CONFIG_SPI_MAX_TRANSFER_SZ=32
 #define LOGE(...)     ESP_LOGE(__func__,__VA_ARGS__)
 #define LOGV(...)     ESP_LOGV(__func__,__VA_ARGS__)
 
+extern bool i2c_is_initialized;
+
 /* ** i2c helpers ** */
 esp_err_t _i2c_init(void);
 esp_err_t i2c_read(uint8_t i2c_addr, uint8_t *read_buffer, size_t read_size);
 esp_err_t i2c_write(uint8_t i2c_addr, uint8_t *write_buffer, size_t write_size);
 esp_err_t i2c_write_read(uint8_t i2c_addr, uint8_t read_reg, uint8_t *read_buffer, size_t read_size, uint32_t delay_us);
+
 
 /***** SPI **** */
 typedef struct {

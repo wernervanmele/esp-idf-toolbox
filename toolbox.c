@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "toolbox.h"
 
+bool i2c_is_initialized = false;
 /* ************ HELPER FUNCS ***************** */
 
 /**
